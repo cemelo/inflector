@@ -6,7 +6,7 @@ organization in Global := "com.hypertino"
 
 lazy val library = crossProject.settings(publishSettings:_*).settings(
   name := "inflector",
-  version := "1.0-SNAPSHOT",
+  version := "1.0.8",
   libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
   publishArtifact := true,
   publishArtifact in Test := false
@@ -51,13 +51,7 @@ lazy val publishSettings = Seq(
   pgpPassphrase := Option(System.getenv().get("oss_gpg_passphrase")).map(_.toCharArray),
   publishMavenStyle := true,
   pomIncludeRepository := { _ => false},
-  publishTo := {
-    val nexus = "https://oss.sonatype.org/"
-    if (isSnapshot.value)
-      Some("snapshots" at nexus + "content/repositories/snapshots")
-    else
-      Some("releases" at nexus + "service/local/staging/deploy/maven2")
-  }
+  publishTo := Some("Dealermade Maven Repository" at "https://mymavenrepo.com/repo/3RngugNS1G2SDIOzSUwZ") 
 )
 
 credentials ++= (for {
